@@ -72,40 +72,41 @@ while True:
     print(f'\nroom: {steele.local_place.name}')
     print(f'\ndescription: {steele.local_place.description}')
     print(f'\ninventory: {steele.inventory}')
-    print(f"\nlocal room room_inventory: {steele.local_place.room_inventory}\n")
+    print(f"\nroom inventory: {steele.local_place.room_inventory}\n")
 
-    direction = input("player controls \n n, s is to move up and down  \n w, e overlook is to move right or left \n g, d to grab or remove make sure to type a item\n q is to quit\n\n")
-    if direction in ['n', 's', 'w', 'e']:
+    control = input("player controls \n n, s is to move up and down  \n w, e overlook is to move right or left \n g, r to grab or remove make sure to type a item\n q is to quit\n\n")
+    if control in ['n', 's', 'w', 'e']:
         print("You moved to new room")
-        steele.change_rooms(direction)
-    elif direction == 'q':
+        steele.change_rooms(control)
+    elif control == 'q':
         break
-    direction = direction.split(" ")
-    if direction[0] not in ["g", "r"]:
+    control = control.split(" ")
+    if control[0] not in ["g", "r"]:
         pass 
     
-    elif direction[0] == 'g':
-            item = steele.local_place.get_item(direction[1])
+    elif control[0] == 'g':
+            item = steele.local_place.get_item(control[1])
             
             if item == None:
                 print("the room has no such item")
             else:
                 steele.local_place.room_inventory.remove(item)
                 steele.inventory.append(item)
-                item.grab_item()
-                print(f'\n Here are your room_inventory:  {steele.inventory}')
-                print(f"\n local room room_inventory: {steele.local_place.room_inventory}")
+                
+                print(f'\n inventory:  {steele.inventory}')
+                print(f"\n room inventory: {steele.local_place.room_inventory}")
 
-    elif direction[0] == 'r':
-        item = steele.get_item(direction[1])
+
+    elif control[0] == 'r':
+        item = steele.get_item(control[1])
         if item == None:
             print("the room has no such item")
         else:
             steele.local_place.room_inventory.append(item)
             steele.inventory.remove(item)
-            item.leave_item()
-            print(f'\n Here are your room_inventory:  {steele.inventory}')
-            print(f"\n local room room_inventory: {steele.local_place.room_inventory}")
+            
+            print(f'\n inventory:  {steele.inventory}')
+            print(f"\n room inventory: {steele.local_place.room_inventory}")
     else:
         print("wrong input")
 print('run "python adv.py" to play anther round')

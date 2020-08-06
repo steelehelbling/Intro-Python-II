@@ -20,14 +20,14 @@ class Room:
                 return item
         return None
 
-    def get_room(self, direction):
-        if direction == "n":
+    def get_room(self, control):
+        if control == "n":
             return self.n_to
-        elif direction == "s":
+        elif control == "s":
             return self.s_to
-        elif direction == "e":
+        elif control == "e":
             return self.e_to
-        elif direction == "w":
+        elif control == "w":
             return self.w_to
         else:
             return None
@@ -38,7 +38,3 @@ class Item:
         self.description = description
     def __repr__(self):
         return f"{self.name}"
-    def grab_item(self):
-        print(f'you take {self.name} from room')
-    def leave_item(self):
-        print(f'you leave {self.name} in room') 

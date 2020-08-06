@@ -15,10 +15,11 @@ class Player:
                 return item
         return None
 
-    def change_rooms(self, direction):
-        new_room = self.local_place.get_room(direction)
+    def change_rooms(self, control):
+        new_room = self.local_place.get_room(control)
         if new_room is not None:
             self.local_place = new_room
+
         else:
             print("no rooms connected to this one")
 
