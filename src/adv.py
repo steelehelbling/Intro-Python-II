@@ -50,6 +50,8 @@ room["overlook"].room_inventory.append(Acid)
 room["foyer"].room_inventory.append(Backpack)
 room["overlook"].room_inventory.append(Bagpipes)
 room["narrow"].room_inventory.append(Battleaxe)
+# human = Sharp
+# room["outside"].room_dangers.append(human)
 #
 # Main
 #
@@ -73,6 +75,7 @@ while True:
     print(f'\ndescription: {steele.local_place.description}')
     print(f'\ninventory: {steele.inventory}')
     print(f"\nroom inventory: {steele.local_place.room_inventory}\n")
+    # print(f"\nroom dangers: {steele.local_place.room_dangers}\n")
 
     control = input("player controls \n n, s is to move up and down  \n w, e overlook is to move right or left \n g, r to grab or remove make sure to type a item\n q is to quit\n\n")
     if control in ['n', 's', 'w', 'e']:
@@ -82,31 +85,11 @@ while True:
         break
     control = control.split(" ")
     if control[0] not in ["g", "r"]:
-        pass 
-    
+        print("hi") 
     elif control[0] == 'g':
-            item = steele.local_place.get_item(control[1])
-            
-            if item == None:
-                print("the room has no such item")
-            else:
-                steele.local_place.room_inventory.remove(item)
-                steele.inventory.append(item)
-                
-                print(f'\n inventory:  {steele.inventory}')
-                print(f"\n room inventory: {steele.local_place.room_inventory}")
-
-
+        steele.add_to_inventory(control)
     elif control[0] == 'r':
-        item = steele.get_item(control[1])
-        if item == None:
-            print("the room has no such item")
-        else:
-            steele.local_place.room_inventory.append(item)
-            steele.inventory.remove(item)
-            
-            print(f'\n inventory:  {steele.inventory}')
-            print(f"\n room inventory: {steele.local_place.room_inventory}")
+        steele.remove_from_inventory(control)
     else:
         print("wrong input")
 print('run "python adv.py" to play anther round')
